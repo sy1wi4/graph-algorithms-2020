@@ -1,2 +1,2 @@
 # Graph Algorithms
-## Graph Algorithms course at AGH UST (20/21)
+Graph Algorithms course at AGH UST (20/21)
