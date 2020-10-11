@@ -1,3 +1,6 @@
+# uruchamia daną funkcję dla każdego z plików bez rozszerzenia zawartego w katalogu w którym aktualnie jesteśmy (grafy testowe)
+
+
 import os
 import pathlib
  
@@ -15,8 +18,6 @@ def fix(path):
     return fixed
 
 
-
-# uruchamia funkcję dla każdego z plików bez rozszerzenia zawartego w katalogu w którym aktualnie jesteśmy 
 
 def run(func):
 
