@@ -9,8 +9,6 @@ Wierzchołek s ma nr 1, t nr V.
 
 from dimacs import loadDirectedWeightedGraph
 
-
-
 def build_graph(V,L):
 
   g = [[0]*V for _ in range(V)]
