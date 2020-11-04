@@ -30,7 +30,7 @@ def run(func):
     for file in os.listdir(path) :
 
         # os.path.splitext(path) zwraca rozszerzenie pliku danego ścieżką
-
+        print(file)
         if os.path.splitext(path + file)[1] == '' :
             # XD
             if file != '__pycache__' :  
