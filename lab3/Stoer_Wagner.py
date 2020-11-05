@@ -64,7 +64,7 @@ def minimumCutPhase(G,deleted):
   visited[0] = True
   visited[1] = True
 
-  # licznik  pilnujący, by w zbiorze S znalazły się wszytskie wierzchołki
+  # licznik  pilnujący, by w zbiorze S znalazły się wszystkie wierzchołki
   ctr = 0
   
   while ctr != len(G)-2-len(deleted) :
@@ -86,7 +86,7 @@ def minimumCutPhase(G,deleted):
   s = S[-1]
   t = S[-2]
 
-  # zapamietujemy sumę wag krawędzi wychodzących z s jako potencjalny wynik
+  # zapamiętujemy sumę wag krawędzi wychodzących z s jako potencjalny wynik
   pot_res = 0
 
   for _, weight in G[s].items():
