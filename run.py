@@ -3,7 +3,8 @@
 
 import os
 import pathlib
- 
+import datetime
+import dimacs
 
 # zmienia format ścieżki windowsowej ('\' -> '/')
 def fix(path):
@@ -29,9 +30,22 @@ def run(func):
 
     for file in os.listdir(path) :
 
-        # os.path.splitext(path) zwraca rozszerzenie pliku danego ścieżką
-        print(file)
+        # os.path.splitext(path) zwsraca rozszerzenie pliku danego ścieżką
+      
         if os.path.splitext(path + file)[1] == '' :
-            # XD
-            if file != '__pycache__' :  
-                print(func(file),"\n")
+
+            if file != '__pycache__' : 
+                print(file) 
+
+                start = datetime.datetime.now()
+                expected = dimacs.loadDirectedWeightedGraph(file)[0]
+                actual = func(file)
+
+                duration = datetime.datetime.now() - start
+                print("expected:", expected)
+                print("actual:", actual)
+                if expected != actual:
+                    print("error")
+                else:
+                    print("OK!")
+                print("duration:",duration, "\n")
