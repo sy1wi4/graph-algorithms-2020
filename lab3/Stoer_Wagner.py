@@ -69,8 +69,8 @@ def minimumCutPhase(G,deleted):
   
   while ctr != len(G)-2-len(deleted) :
 
-    (suma, v) = PQ.get()
-    suma *= -1
+    (_ v) = PQ.get()
+   
 
     if not visited[v] and not v in deleted:
 
