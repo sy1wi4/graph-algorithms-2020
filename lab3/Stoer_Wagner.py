@@ -49,7 +49,11 @@ def minimumCutPhase(G,deleted):
   # zaczynamy od dowolnego wierzchołka, który tworzy zbiór jednoelementowy,
   # w kolejnych krokach dodając do niego taki wierzchołek, którego suma krawędzi 
   # łączących go z wierzchołkami tego zbioru jest największa
-  S = [1]
+
+  # s i t to odpowiednio wierzchołki ostanio i przedostatnio dodane do zbioru S
+
+  s = 1
+  t = None
 
   # dla każdego v przechowuję aktualnie max sumę krawędzi łączących go z S
   current_sum = [0]*len(G)
@@ -70,12 +74,12 @@ def minimumCutPhase(G,deleted):
   while ctr != len(G)-2-len(deleted) :
 
     (_, v) = PQ.get()
-   
+    
 
     if not visited[v] and not v in deleted:
 
-      S.append(v)
-      
+      t = s 
+      s = v      
       for u, weight in G[v].items():
         current_sum[u] += weight
         PQ.put((-1*current_sum[u], u))
@@ -83,8 +87,7 @@ def minimumCutPhase(G,deleted):
       visited[v] = True
       ctr += 1
 
-  s = S[-1]
-  t = S[-2]
+
 
   # zapamiętujemy sumę wag krawędzi wychodzących z s jako potencjalny wynik
   pot_res = 0
