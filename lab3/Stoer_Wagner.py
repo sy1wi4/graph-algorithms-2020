@@ -57,12 +57,15 @@ def minimumCutPhase(G,deleted):
 
   # dla każdego v przechowuję aktualnie max sumę krawędzi łączących go z S
   current_sum = [0]*len(G)
+
+  # do kolejki na początek wkładam tylko wierzchołek s i jego sąsiadów 
   PQ = PriorityQueue()
 
-  for v in range(1,len(G)):
+  PQ.put((0,1))
+  for (v,w) in G[1].items():
     # (suma krawędzi do S, v)
-    PQ.put((0,v))
-
+    PQ.put((-1*w,v))
+  
 
   visited = [False]*len(G)
   visited[0] = True
@@ -71,12 +74,11 @@ def minimumCutPhase(G,deleted):
   # licznik  pilnujący, by w zbiorze S znalazły się wszystkie wierzchołki
   ctr = 0
   
-  while ctr != len(G)-2-len(deleted) :
+  while ctr != len(G)-2-deleted :
 
     (_, v) = PQ.get()
-    
 
-    if not visited[v] and not v in deleted:
+    if not visited[v]:
 
       t = s 
       s = v      
@@ -96,9 +98,11 @@ def minimumCutPhase(G,deleted):
     pot_res += weight
 
   merge(G,s,t)
-  deleted.append(t)
+  #print("current size:", len(G) - 1 - deleted)
+  deleted += 1
 
-  return pot_res
+
+  return pot_res, deleted
   
 
 def edge_connectivity(graph):
@@ -110,13 +114,13 @@ def edge_connectivity(graph):
   
   for u, v, c in L: G[u][v] = G[v][u] = c
 
-  deleted = []
+  deleted = 0
 
 
   result = float("inf")
 
-  while len(deleted) != len(G)-2:
-
-    result = min(result, minimumCutPhase(G,deleted))
+  while deleted != len(G)-2:
+    res, deleted = minimumCutPhase(G,deleted)
+    result = min(result, res)
 
   return result
