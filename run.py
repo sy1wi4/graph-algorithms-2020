@@ -5,6 +5,7 @@ import os
 import pathlib
 import datetime
 import dimacs
+from colorama import Fore, Style
 
 # zmienia format ścieżki windowsowej ('\' -> '/')
 def fix(path):
@@ -46,7 +47,9 @@ def run(func):
                 print("actual:", actual)
                 
                 if expected != actual:
-                    print("error")
+                    print(Fore.RED + 'ERROR')
+                    print(Style.RESET_ALL)
                 else:
-                    print("OK!")
+                    print(Fore.GREEN + 'OK!')
+                    print(Style.RESET_ALL)
                 print("duration:",duration, "\n")
