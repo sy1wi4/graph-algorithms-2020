@@ -48,8 +48,8 @@ def run(func):
                 
                 if expected != actual:
                     print(Fore.RED + 'ERROR')
-                    print(Style.RESET_ALL)
+                    print(Style.RESET_ALL, end = "")
                 else:
                     print(Fore.GREEN + 'OK!')
-                    print(Style.RESET_ALL)
+                    print(Style.RESET_ALL, end = "")
                 print("duration:",duration, "\n")
